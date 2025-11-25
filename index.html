@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Detalle para Deysi — Tarjeta</title>
+  <style>
+    :root{
+        --bg:#F7E6FF; /* lila suave */
+        --card:#ffffff;
+        --accent:#F7C9D9;
+        --accent-2:#FFD8A9;
+        --text:#3b2b2b;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:linear-gradient(180deg,var(--bg),#FFF1F8 60%); display:flex; align-items:center; justify-content:center; padding:32px;
+      overflow:hidden;
+    }
+
+    /* fondo de globos */
+    .balloon {position:absolute; border-radius:50%; opacity:0.95;}
+    .b1{width:120px;height:150px; background:radial-gradient(circle at 30% 25%, #ffffff 10%, #f7a9c2 30%, #f06aa8 65%); left:10%; top:10%; animation:float 7s ease-in-out infinite;}
+    .b2{width:90px;height:110px; background:radial-gradient(circle at 30% 25%, #fff 8%, #ffd9a8 30%, #ffb86b 65%); right:12%; top:8%; animation:float 6.2s ease-in-out .3s infinite;}
+    .b3{width:70px;height:90px; background:radial-gradient(circle at 30% 25%, #fff 8%, #c8e9ff 30%, #7fc9ff 65%); left:25%; bottom:10%; animation:float 8s ease-in-out .6s infinite;}
+    .b4{width:100px;height:130px; background:radial-gradient(circle at 30% 25%, #fff 8%, #e1d6ff 30%, #c29bff 65%); right:20%; bottom:12%; animation:float 7.5s ease-in-out .9s infinite;}
+    @keyframes float{0%{transform:translateY(0) translateX(0)}50%{transform:translateY(-18px) translateX(8px)}100%{transform:translateY(0) translateX(0)}}
+
+    /* tarjeta */
+    .card{
+      width:min(740px,95vw); max-width:900px; background:var(--card); border-radius:18px; padding:28px; box-shadow:0 12px 40px rgba(37,20,60,0.12); display:grid; grid-template-columns:1fr 340px; gap:20px; align-items:center; position:relative; z-index:2;
+    }
+    .left{padding:10px}
+    h1{margin:6px 0 8px; font-size:28px; color:var(--text)}
+    p.lead{margin:0 0 12px; color:#5b4b4b}
+
+    /* oso (SVG container) */
+    .bear-wrap{display:flex; align-items:center; justify-content:center}
+    svg{width:320px; height:auto; display:block}
+
+    /* mensaje decorado */
+    .message{background:linear-gradient(180deg, rgba(247,201,217,.14), rgba(255,232,208,.12)); padding:16px; border-radius:12px; border:1px dashed rgba(150,110,120,0.12)}
+    .message p{margin:0; font-size:18px; line-height:1.4}
+    .from{margin-top:12px; font-size:14px; color:#7a6363}
+
+    /* botones */
+    .controls{display:flex; gap:10px; margin-top:14px}
+    button{cursor:pointer; border:0; padding:8px 12px; border-radius:10px; font-weight:600}
+    .btn-play{background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#3b2b2b}
+    .btn-hug{background:#FCE9F1; color:#a43b6b}
+
+    /* responsive */
+    @media (max-width:880px){.card{grid-template-columns:1fr; text-align:center} .bear-wrap{order:-1}}
+
+    /* confetti */
+    .confetti{position:absolute; inset:0; pointer-events:none; z-index:1}
+    .confetti .piece{position:absolute; width:8px; height:14px; opacity:0.95; transform-origin:center; animation:fall 3s linear infinite}
+    @keyframes fall{0%{transform:translateY(-10vh) rotate(0)}100%{transform:translateY(110vh) rotate(720deg)}}
+
+  </style>
+</head>
+<body>
+  <div class="balloon b1"></div>
+  <div class="balloon b2"></div>
+  <div class="balloon b3"></div>
+  <div class="balloon b4"></div>
+
+  <div class="card" role="region" aria-label="Tarjeta para Deysi">
+    <div class="left">
+      <h1>Para <strong>Deysi</strong> ✨</h1>
+      <p class="lead">Pequeño detalle para alegrar tu día — ¡feliz día del peluche! 🧸</p>
+
+      <div class="message">
+        <p>Hola Deysi, me alegra haberte conocido. Hoy 25 de noviembre te envío este peluche virtual lleno de cariño. Aqui esta tu pelichito por si nadie te lo dio aun, no soy la gran cosa pero te lo hago de corazon y recuerda tomar aguita. 💐🌹❣️</p>
+        <div class="from">Con cariño, <strong>Jorge Luis</strong></div>
+      </div>
+
+      <div class="controls">
+        <button class="btn-play" id="playBtn">▶️ Reproducir musica</button>
+        <button class="btn-hug" id="hugBtn">🧸 Enviar abrazo</button>
+      </div>
+    </div>
+
+    <div class="bear-wrap">
+      <!-- SVG de oso sencillo -->
+      <svg viewBox="0 0 300 300" aria-hidden="true">
+        <defs>
+          <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#cdb3b8" flood-opacity="0.25" />
+          </filter>
+        </defs>
+        <g filter="url(#shadow)">
+          <!-- cuerpo -->
+          <ellipse cx="150" cy="190" rx="78" ry="62" fill="#E8BFAF" />
+          <!-- cabeza -->
+          <circle cx="150" cy="110" r="64" fill="#F1CBBF" />
+          <!-- orejas -->
+          <circle cx="106" cy="60" r="22" fill="#F1CBBF" />
+          <circle cx="194" cy="60" r="22" fill="#F1CBBF" />
+          <!-- hocico -->
+          <ellipse cx="150" cy="125" rx="28" ry="20" fill="#F6E2D9" />
+          <circle cx="140" cy="122" r="4" fill="#3b2b2b" />
+          <circle cx="160" cy="122" r="4" fill="#3b2b2b" />
+          <path d="M148 132 q2 6 8 6" stroke="#3b2b2b" stroke-width="2" fill="none" stroke-linecap="round" />
+          <!-- ojos -->
+          <circle cx="132" cy="102" r="6" fill="#3b2b2b" />
+          <circle cx="168" cy="102" r="6" fill="#3b2b2b" />
+          <!-- corazon en la barriga -->
+          <path d="M150 175 C140 160 120 160 120 175 C120 188 140 196 150 210 C160 196 180 188 180 175 C180 160 160 160 150 175 Z" fill="#FF9EB3" opacity="0.95" />
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="confetti" aria-hidden="true"></div>
+
+  <audio id="music" src="Rusherking feat Dread Mar I  - Perfecta  (Vídeo Oficial).mp3" preload="auto"></audio>
+
+  <script>
+    // generar confetti sencillo
+    const confetti = document.querySelector('.confetti');
+    const colors = ['#FFB4C6','#FFD28E','#BEE7FF','#E7D1FF','#FFDEE6'];
+    for(let i=0;i<28;i++){
+      const el = document.createElement('div'); el.className='piece';
+      el.style.left = Math.random()*100 + '%';
+      el.style.top = Math.random()*10 + '%';
+      el.style.background = colors[Math.floor(Math.random()*colors.length)];
+      el.style.transform = 'rotate('+(Math.random()*360)+'deg)';
+      el.style.animationDuration = (2.4+Math.random()*2)+'s';
+      el.style.opacity = 0.9; el.style.width = (6+Math.random()*8)+'px'; el.style.height = (10+Math.random()*14)+'px';
+      confetti.appendChild(el);
+    }
+
+    // --- Música real en MP3 ---
+    const playBtn = document.getElementById("playBtn");
+    const music = document.getElementById("music");
+
+    playBtn.addEventListener("click", () => {
+        if (music.paused) {
+        music.play();
+        playBtn.textContent = "⏸️ Pausar música";
+        } else {
+        music.pause();
+        playBtn.textContent = "▶️ Reproducir música";
+        }
+    });
+
+    // botón "Enviar abrazo" que dispara una animación de latido en el corazón del oso
+    document.getElementById('hugBtn').addEventListener('click', ()=>{
+      const heart = document.querySelector('path[fill="#FF9EB3"]');
+      if(!heart) return;
+      heart.animate([{transform:'scale(1)'},{transform:'scale(1.1)'},{transform:'scale(1)'}],{duration:600, iterations:1, easing:'ease-out'});
+      // también mostrar un pequeño toast
+      showToast('¡Abrazo enviado! 🧸🌹');
+    });
+
+    // pequeño toast
+    function showToast(text){
+      const t = document.createElement('div'); t.textContent=text; t.style.position='fixed'; t.style.left='50%'; t.style.transform='translateX(-50%)'; t.style.bottom='28px'; t.style.padding='10px 16px'; t.style.borderRadius='12px'; t.style.background='rgba(40,20,40,0.9)'; t.style.color='white'; t.style.zIndex=9999; document.body.appendChild(t);
+      setTimeout(()=>{t.style.opacity='0'; t.style.transition='opacity .5s';},1200);
+      setTimeout(()=>t.remove(),1800);
+    }
+  </script>
+</body>
+</html>
